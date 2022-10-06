@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <h1 style="font-family: 'Roboto', 'Arial', sans-serif">Laden...</h1>
+    <form
+      name="f"
+      id="form"
+      action="https://www.startpage.com/sp/search"
+      method="POST"
+    >
+      <input type="hidden" name="query" value="" id="query" />
+    </form>
+    <script>
+      document.getElementById("query").value = new Proxy(
+        new URLSearchParams(window.location.search),
+        {
+          get: (searchParams, prop) => searchParams.get(prop),
+        }
+      ).q.replaceAll("+", " ");
+      document.getElementById("form").submit();
+    </script>
+  </body>
+</html>
